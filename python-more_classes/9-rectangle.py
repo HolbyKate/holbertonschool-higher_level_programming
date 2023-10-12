@@ -55,7 +55,10 @@ class Rectangle:
     def __str__(self):
         if self.__width == 0 or self.__height == 0:
             return ("")
-        return '\n'.join([str(self.print_symbol) * self.width] * self.height)
+        rect_str = ""
+        for i in range(self.__height):
+            rect_str +=str(self.print_symbol) * self.__width +"\n"
+            return rect_str[:-1]
 
     def __repr__(self):
         """return a string representation of the rectangle to be able
@@ -65,7 +68,6 @@ class Rectangle:
     def __del__(self):
         """Delete a rectangle"""
         print("Bye rectangle...")
-
         Rectangle.number_of_instances -= 1
 
     def bigger_or_equal(rect_1, rect_2):
