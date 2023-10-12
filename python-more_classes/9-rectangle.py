@@ -13,6 +13,7 @@ class Rectangle:
     def __init__(self, width=0, height=0):
         self.__width = width
         self.__height = height
+
         Rectangle.number_of_instances += 1
 
     @property
@@ -36,10 +37,9 @@ class Rectangle:
     def height(self, value):
         if not isinstance(value, int):
             raise TypeError("height must be an integer")
-        elif value < 0:
+        if value < 0:
             raise ValueError("height must be >= 0")
-        else:
-            self.__height = value
+        self.__height = value
 
     def area(self):
         """define instance method that returns the current rectangle area"""
@@ -49,8 +49,7 @@ class Rectangle:
         """ if width or height is equal to 0, perimeter is equal to 0"""
         if self.__width == 0 or self.__height == 0:
             return 0
-        else:
-            return (self.__width + self.__height) * 2
+        return (self.__width + self.__height) * 2
 
     def __str__(self):
         if self.__width == 0 or self.__height == 0:
@@ -60,7 +59,7 @@ class Rectangle:
     def __repr__(self):
         """return a string representation of the rectangle to be able
         to recreate a new instance by using eval()"""
-        return ("Rectangle({}, {})".format(self.__width, self.__height))
+        return f"Rectangle({self.__width}, {self.__height})"
 
     def bigger_or_equal(rect_1, rect_2):
         """Returns the biggest rectangle based on the area"""
@@ -76,13 +75,12 @@ class Rectangle:
     @classmethod
     def square(cls, size=0):
         """returns a new Rectangle instance with width == height == size"""
-        return Rectangle(size, size)
+        return cls(size, size)
 
     def __del__(self):
         """Delete a rectangle"""
-        print("Bye rectangle...")
-
         Rectangle.number_of_instances -= 1
+        print("Bye rectangle...")
 
 
 obj = Rectangle
