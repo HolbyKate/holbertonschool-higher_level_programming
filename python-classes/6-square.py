@@ -7,6 +7,7 @@ Defines class Square based on 3-square.py
 
 class Square:
     """Write a empty class"""
+
     def __init__(self, size=0, position=(0, 0)):
         self.__size = size
         self.__position = position
@@ -29,7 +30,8 @@ class Square:
             raise TypeError("size must be an integer")
         elif value < 0:
             raise ValueError("size must be >= 0")
-        self.__size = value
+        else:
+            self.__size = value
 
     @property
     def position(self):
@@ -52,12 +54,9 @@ class Square:
         """This def prints in stdout the square with the character #"""
         if self.__size == 0:
             print()
-            return
-        for i in range(self.__position[1]):
-            print()
-        for i in range(self.__size):
-            for j in range(self.__position[0]):
-                print(" ", end="")
-            for j in range(self.__size):
-                print("#", end="")
-            print()
+        else:
+            for _ in range(self.__position[1]):
+                print()
+            for _ in range(self.__size):
+                print(" " * self.__position[0], end="")
+                print("#" * self.__size)
