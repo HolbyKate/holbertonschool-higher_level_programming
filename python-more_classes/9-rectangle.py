@@ -62,12 +62,6 @@ class Rectangle:
         to recreate a new instance by using eval()"""
         return ("Rectangle({}, {})".format(self.__width, self.__height))
 
-    def __del__(self):
-        """Delete a rectangle"""
-        print("Bye rectangle...")
-
-        Rectangle.number_of_instances -= 1
-
     def bigger_or_equal(rect_1, rect_2):
         """Returns the biggest rectangle based on the area"""
         if not isinstance(rect_1, Rectangle):
@@ -83,3 +77,9 @@ class Rectangle:
     def square(cls, size=0):
         """returns a new Rectangle instance with width == height == size"""
         return Rectangle(size, size)
+
+    def __del__(self):
+        """Delete a rectangle"""
+        print("Bye rectangle...")
+
+        Rectangle.number_of_instances -= 1
