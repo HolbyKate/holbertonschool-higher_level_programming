@@ -55,19 +55,17 @@ class Rectangle:
     def __str__(self):
         if self.__width == 0 or self.__height == 0:
             return ("")
-        rect_str = ""
-        for i in range(self.__height):
-            rect_str +=str(self.print_symbol) * self.__width +"\n"
-            return rect_str[:-1]
+        return '\n'.join([str(self.print_symbol) * self.width] * self.height)
 
     def __repr__(self):
         """return a string representation of the rectangle to be able
         to recreate a new instance by using eval()"""
-        return ("Rectangle({}, {})".format(self.width, self.height))
+        return ("Rectangle({}, {})".format(self.__width, self.__height))
 
     def __del__(self):
         """Delete a rectangle"""
         print("Bye rectangle...")
+
         Rectangle.number_of_instances -= 1
 
     def bigger_or_equal(rect_1, rect_2):
@@ -76,7 +74,6 @@ class Rectangle:
             raise TypeError("rect_1 must be an instance of Rectangle")
         if not isinstance(rect_2, Rectangle):
             raise TypeError("rect_2 must be an instance of Rectangle")
-
         if rect_1.area() >= rect_2.area():
             return rect_1
         else:
@@ -85,4 +82,4 @@ class Rectangle:
     @classmethod
     def square(cls, size=0):
         """returns a new Rectangle instance with width == height == size"""
-        return cls(size, size)
+        return Rectangle(size, size)
