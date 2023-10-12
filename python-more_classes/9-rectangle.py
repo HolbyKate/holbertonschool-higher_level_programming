@@ -63,7 +63,7 @@ class Rectangle:
     def __repr__(self):
         """return a string representation of the rectangle to be able
         to recreate a new instance by using eval()"""
-        return ("Rectangle({}, {})".format(self.__width, self.__height))
+        return ("Rectangle({}, {})".format(self.width, self.height))
 
     def __del__(self):
         """Delete a rectangle"""
@@ -76,6 +76,7 @@ class Rectangle:
             raise TypeError("rect_1 must be an instance of Rectangle")
         if not isinstance(rect_2, Rectangle):
             raise TypeError("rect_2 must be an instance of Rectangle")
+
         if rect_1.area() >= rect_2.area():
             return rect_1
         else:
