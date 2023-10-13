@@ -6,6 +6,7 @@ Requires same size lists of ints or floats, and max two decimal places
 
 
 def say_my_name(first_name, last_name=""):
+    """Return: the first and last name"""
 
     msg = "say_my_name() missing 1 required positional argument: 'first_name'"
 
@@ -13,6 +14,4 @@ def say_my_name(first_name, last_name=""):
         raise TypeError("first_name must be a string")
     if not isinstance(last_name, str):
         raise TypeError("last_name must be a string")
-    if len(first_name) == 0 and len(last_name) == 0:
-        raise TypeError(msg)
-    print(f"My name is {first_name} {last_name}")
+    print("My name is {} {}".format(first_name, last_name))
