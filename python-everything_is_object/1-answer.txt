@@ -1,1 +1,1 @@
-var_name
+my_variable
