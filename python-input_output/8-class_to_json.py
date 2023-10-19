@@ -1,8 +1,5 @@
 #!/usr/bin/python3
-"""Task: 7-add_item.py"""
-
-
-import json
+"""Task: 8-class_to_json.py"""
 
 
 def class_to_json(obj):
@@ -11,4 +8,4 @@ def class_to_json(obj):
     structure (list, dictionary, string, integer and boolean) for JSON
     serialization of an object:
     """
-    return (obj. __dict__)
+    return obj.__dict__
