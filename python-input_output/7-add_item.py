@@ -1,23 +1,21 @@
 #!/usr/bin/python3
-# -*- coding: utf-8 -*-
-"""
-Created on Tru Jun 3 15:13:37 2020
 
-@author: Robinson Montes
-"""
+""" 7-add_item module """
+import sys
 import json
 
+save_to_json_file = __import__('5-save_to_json_file').save_to_json_file
+load_from_json_file = __import__('6-load_from_json_file').load_from_json_file
 
-def save_to_json_file(my_obj, filename):
-    """
-    Save object to a file
+args = sys.argv[1:]
 
-    Arguments:
-        my_obj (obj): The inputed object to convert in json format
-        filename (str): The name of the output file
+filename = "add_item.json"
 
-    Return:
-        A file with a text in jason format
-    """
-    with open(filename, 'w', encoding='utf-8') as file:
-        return file.write(json.dumps(my_obj))
+try:
+    my_list = load_from_json_file(filename)
+except FileNotFoundError:
+    my_list = []
+
+my_list.extend(args)
+
+save_to_json_file(my_list, filename)
