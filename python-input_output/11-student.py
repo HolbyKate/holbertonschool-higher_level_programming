@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Task: 10-student.py"""
+"""Task: 11-student.py"""
 
 
 class Student():
