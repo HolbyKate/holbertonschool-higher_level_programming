@@ -110,4 +110,3 @@ class Rectangle(Base):
         w1 = self.__width
         h1 = self.__height
         return (f"[{rec}] ({id1}) {x1}/{y1} - {w1}/{h1}")
-      
