@@ -113,36 +113,28 @@ class Rectangle(Base):
 
     def update(self, *args, **kwargs):
         """Assign an argument to each attribute"""
-        if args and len(args) != 0:
-            a = 0
-            for arg in args:
-                if a == 0:
-                    if arg is None:
-                        self.__init__(self.width, self.height, self.x, self.y)
-                    else:
-                        self.id = arg
-                elif a == 1:
-                    self.width = arg
-                elif a == 2:
-                    self.height = arg
-                elif a == 3:
-                    self.x = arg
-                elif a == 4:
-                    self.y = arg
-                a += 1
-
-        elif kwargs and len(kwargs) != 0:
+        if args:
+            for i, arg in enumerate(args):
+                if i == 0:
+                    self.id = arg
+                elif i == 1:
+                    self.__width = arg
+                elif i == 2:
+                    self.__height = arg
+                elif i == 3:
+                    self.__x = arg
+                elif i == 4:
+                    self.__y = arg
+                else:
+                    break
+            return arg
+        else:
             for k, v in kwargs.items():
-                if k == "id":
-                    if v is None:
-                        self.__init__(self.width, self.height, self.x, self.y)
-                    else:
-                        self.id = v
-                elif k == "width":
-                    self.width = v
-                elif k == "height":
-                    self.height = v
-                elif k == "x":
-                    self.x = v
-                elif k == "y":
-                    self.y = v
+                if hasattr(self, k):
+                    setattr(self, k, v)
+            return v
+
+    def to_dictionary(self):
+        """Returns the dictionary representation"""
+        return {'id': self.id, 'width': self.__width, 'height': self.__height,
+                'x': self.__x, 'y': self.__y}
