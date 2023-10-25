@@ -2,6 +2,9 @@
 """Module base.py"""
 
 
+import json 
+
+
 class Base:
     """Write a class with a private class attribute and class construction"""
 
@@ -14,3 +17,9 @@ class Base:
         else:
             Base.__nb_objects += 1
             self.id = Base.__nb_objects
+
+    def to_json_string(list_dictionaries):
+        """Return Json string representation"""
+        if list_dictionaries is None:
+            return "[]"
+        return json.dumps(list_dictionaries)
