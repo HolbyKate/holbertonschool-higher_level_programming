@@ -112,29 +112,40 @@ class Rectangle(Base):
         return (f"[{rec}] ({id1}) {x1}/{y1} - {w1}/{h1}")
 
     def update(self, *args, **kwargs):
-        """Assign an argument to each attribute"""
+        """
+        If args: set attributes in this order: id, width, height, x, y
+        If no args given: set attributes according to kwargs
+        """
         if args:
-            for i, arg in enumerate(args):
-                if i == 0:
-                    self.id = arg
-                elif i == 1:
-                    self.__width = arg
-                elif i == 2:
-                    self.__height = arg
-                elif i == 3:
-                    self.__x = arg
-                elif i == 4:
-                    self.__y = arg
+            for k, v in enumerate(args):
+                if k == 0:
+                    self.id = v
+                elif k == 1:
+                    self.width = v
+                elif k == 2:
+                    self.height = v
+                elif k == 3:
+                    self.x = v
                 else:
-                    break
-            return arg
+                    self.y = v
         else:
-            for k, v in kwargs.items():
-                if hasattr(self, k):
-                    setattr(self, k, v)
-            return v
+            if "id" in kwargs:
+                self.id = kwargs["id"]
+            if "width" in kwargs:
+                self.width = kwargs["width"]
+            if "height" in kwargs:
+                self.height = kwargs["height"]
+            if "x" in kwargs:
+                self.x = kwargs["x"]
+            if "y" in kwargs:
+                self.y = kwargs["y"]
 
     def to_dictionary(self):
-        """Returns the dictionary representation"""
-        return {'id': self.id, 'width': self.__width, 'height': self.__height,
-                'x': self.__x, 'y': self.__y}
+        """Return dictionary representation"""
+        d = {}
+        d["id"] = self.id
+        d["width"] = self.width
+        d["height"] = self.height
+        d["x"] = self.x
+        d["y"] = self.y
+        return d
