@@ -2,7 +2,7 @@
 """Module base.py"""
 
 
-import json 
+import json
 
 
 class Base:
