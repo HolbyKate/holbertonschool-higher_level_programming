@@ -46,9 +46,32 @@ class Base:
     @classmethod
     def create(cls, **dictionary):
         """Returns an instance with attributes already set"""
-        if cls.__name__ == "Square":
-            dummy = cls(1)
         if cls.__name__ == "Rectangle":
             dummy = cls(1, 1)
+        else:
+            dummy = cls(1)
         dummy.update(**dictionary)
         return dummy
+
+    @classmethod
+    def load_from_file(cls):
+        """
+        Loads a list of instances from a JSON file.
+
+        The filename is constructed using the class name:
+          "<Class name>.json" (e.g., "Rectangle.json").
+        If the file doesn’t exist, an empty list is returned.
+
+        Returns:
+            list: A list of instances of the current class.
+        """
+        filename = f"{cls.__name__}.json"
+        try:
+            with open(filename, 'r', encoding="utf-8") as file:
+                data = Base.from_json_string(file.read())
+                instances = []
+                for item in data:
+                    instances.append(cls.create(**item))
+                return instances
+        except FileNotFoundError:
+            return []
