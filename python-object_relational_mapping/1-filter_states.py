@@ -17,9 +17,9 @@ if __name__ == "__main__":
         database=sys.argv[3]
     )
 
-    cursor = database.cursor()
-    cursor.execute("SELECT * FROM states WHERE name LIKE 'N%'")
-
+    cursor = database.cursor
+    cursor.execute("SELECT * FROM states WHERE BINARY name LIKE 'N%'")
+    
     for row in cursor.fetchall():
         print(row)
 
