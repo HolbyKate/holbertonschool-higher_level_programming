@@ -14,21 +14,19 @@ if __name__ == "__main__":
         port=3306,
         user=sys.argv[1],
         password=sys.argv[2],
-        database=sys.argv[3],
-        state_name=sys.argv[4]
+        database=sys.argv[3]
     )
 
     cursor = database.cursor()
-    query = """
-            SELECT cities.name FROM cities
-            INNER JOIN states ON cities.state_id = states.id
-            WHERE states.name = %s
-            ORDER BY cities.id ASC
-            """
-    cursor.execute(query, (state_name,))
+    cursor.execute("""
+                   SELECT cities.name FROM cities
+                   INNER JOIN states ON cities.state_id = states.id
+                   WHERE states.name = %s
+                   ORDER BY cities.id ASC
+                   """, (sys.argv[4],))
 
     for row in cursor.fetchall():
-        print(row)
+        print(row[0])
 
     cursor.close()
     database.close()
