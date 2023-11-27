@@ -20,9 +20,9 @@ if __name__ == "__main__":
     cursor = database.cursor()
     cursor.execute("""
                    SELECT cities.name FROM cities
-                   JOIN states ON cities.state_id = states.id
-                   WHERE states.name LIKE BINARY %s
-                   ORDER BY cities.id
+                   INNER JOIN states ON cities.state_id = states.id
+                   WHERE states.name = %s
+                   ORDER BY cities.id ASC
                    """, (sys.argv[4],))
 
     for row in cursor.fetchall():
