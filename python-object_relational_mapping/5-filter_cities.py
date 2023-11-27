@@ -26,7 +26,7 @@ if __name__ == "__main__":
                    """, (sys.argv[4],))
 
     result = cursor.fetchall()
-    print(", ".join([row[0] for row in result])) 
+    print(", ".join([row[0] for row in result]))
 
     cursor.close()
     database.close()
