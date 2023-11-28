@@ -15,7 +15,7 @@ if __name__ == "__main__":
 
     Session = sessionmaker(bind=engine)
     session = Session()
-    #delete all State objects with a name containing the letter a
+    # delete all State objects with a name containing the letter a
     states_delete = (
         session.query(State)
         .filter(State.name.like('%a%'))
@@ -26,5 +26,5 @@ if __name__ == "__main__":
         for state in states_delete:
             session.delete(state)
         session.commit()
-        
+
     session.close()
